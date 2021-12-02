@@ -51,4 +51,3 @@ class WebHDFS(Cloud, CloudURLInfo):  # pylint: disable=abstract-method
     @property
     def fs_path(self):
         return "/" + self.path.lstrip("/")
-
