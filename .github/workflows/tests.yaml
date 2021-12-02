@@ -32,6 +32,7 @@ jobs:
         pip install wheel
         pip install -e '.[tests]'
         pip install git+https://github.com/iterative/dvc pre-commit
+        pip install git+https://github.com/iterative/dvc-hdfs
     - name: Check README
       run: python setup.py checkdocs
     - uses: pre-commit/action@v2.0.3
@@ -73,6 +74,7 @@ jobs:
         pip install --upgrade pip setuptools wheel
         pip install -e ".[tests]"
         pip install git+https://github.com/iterative/dvc
+        pip install git+https://github.com/iterative/dvc-hdfs
     - name: setup git
       run: |
         git config --global user.email "dvctester@example.com"

@@ -1,0 +1,15 @@
+{
+  "template": "https://github.com/iterative/cookiecutter-dvc-plugin",
+  "commit": "2eaedadecbad619582ce717e2d4a4ad4709c4c1a",
+  "checkout": null,
+  "context": {
+    "cookiecutter": {
+      "plugin_name": "webhdfs",
+      "_copy_without_render": [
+        ".github/workflows/tests.yaml"
+      ],
+      "_template": "https://github.com/iterative/cookiecutter-dvc-plugin"
+    }
+  },
+  "directory": null
+}
