@@ -30,9 +30,9 @@ jobs:
     - name: Install requirements
       run: |
         pip install wheel
+        pip install git+https://github.com/iterative/dvc-hdfs
         pip install -e '.[tests]'
         pip install git+https://github.com/iterative/dvc pre-commit
-        pip install git+https://github.com/iterative/dvc-hdfs
     - name: Check README
       run: python setup.py checkdocs
     - uses: pre-commit/action@v2.0.3
@@ -72,9 +72,9 @@ jobs:
       if: steps.cache.pip-cache-dir.cache-hit != 'true'
       run: |
         pip install --upgrade pip setuptools wheel
+        pip install git+https://github.com/iterative/dvc-hdfs
         pip install -e ".[tests]"
         pip install git+https://github.com/iterative/dvc
-        pip install git+https://github.com/iterative/dvc-hdfs
     - name: setup git
       run: |
         git config --global user.email "dvctester@example.com"
