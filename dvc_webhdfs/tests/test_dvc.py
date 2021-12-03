@@ -26,29 +26,29 @@ def workspace(make_workspace, cloud_name):
 
 @pytest.fixture
 def stage_md5():
-    raise NotImplementedError
+    return "3869631c193f0a3c206c6f04e84cb2b6"
 
 
 @pytest.fixture
 def is_object_storage():
-    raise NotImplementedError
+    return False
 
 
 @pytest.fixture
 def dir_md5():
-    raise NotImplementedError
+    return "32f6597da5c3c1dead9dc562faac09a2.dir"
 
 
 @pytest.fixture
 def hash_name():
-    raise NotImplementedError
+    return "checksum"
 
 
 @pytest.fixture
 def hash_value():
-    raise NotImplementedError
+    return "000002000000000000000000a86fe4d846edc1bf4c355cb6112f141e00000000"
 
 
 @pytest.fixture
 def dir_hash_value(dir_md5):
-    raise NotImplementedError
+    pytest.skip("external outputs are broken for hdfs dirs")
