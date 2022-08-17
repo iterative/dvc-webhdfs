@@ -43,5 +43,5 @@ class TestAdd(_TestAdd):
         )
 
     @pytest.fixture
-    def dir_hash_value(self, dir_md5):
+    def dir_hash_value(self):
         pytest.skip("external outputs are broken for hdfs dirs")
