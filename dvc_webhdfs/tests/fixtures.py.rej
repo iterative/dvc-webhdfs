@@ -1,0 +1,6 @@
+diff a/dvc_webhdfs/tests/fixtures.py b/dvc_webhdfs/tests/fixtures.py	(rejected hunks)
+@@ -19,4 +19,3 @@ def make_webhdfs():
+ @pytest.fixture
+ def webhdfs(make_webhdfs):
+     return make_webhdfs()
+-
