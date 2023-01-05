@@ -16,5 +16,5 @@ def make_webhdfs(hdfs_server):
 
 
 @pytest.fixture
-def webhdfs(make_webhdfs):
+def webhdfs(make_webhdfs):  # pylint: disable=redefined-outer-name
     return make_webhdfs()
