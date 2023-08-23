@@ -1,14 +1,20 @@
 import threading
+from typing import Any
 
 # pylint:disable=abstract-method
+from dvc.utils.objects import cached_property
 from dvc_objects.fs.base import FileSystem
-from funcy import cached_property, wrap_prop
+from funcy import wrap_prop
 
 
 class WebHDFSFileSystem(FileSystem):
     protocol = "webhdfs"
     REQUIRES = {"fsspec": "fsspec"}
     PARAM_CHECKSUM = "checksum"
+
+    def __init__(self, fs=None, **kwargs: Any):
+        self._ssl_verify = kwargs.pop("ssl_verify", True)
+        super().__init__(fs, **kwargs)
 
     @classmethod
     def _strip_protocol(cls, path: str) -> str:
@@ -33,7 +39,6 @@ class WebHDFSFileSystem(FileSystem):
         )
 
     def _prepare_credentials(self, **config):
-        self._ssl_verify = config.pop("ssl_verify", True)
         principal = config.pop("kerberos_principal", None)
         if principal:
             config["kerb_kwargs"] = {"principal": principal}
