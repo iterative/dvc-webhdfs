@@ -49,6 +49,17 @@ class WebHDFSFileSystem(FileSystem):
     def fs(self):
         from fsspec.implementations.webhdfs import WebHDFS
 
+        # If target data_proxy provided construct the source from host/port
+        if "data_proxy_target" in self.fs_args:
+            host = self.fs_args["host"]
+            port = self.fs_args["port"]
+
+            protocol = "https" if self.fs_args.get("use_https") else "http"
+
+            self.fs_args["data_proxy"] = {
+                f"{protocol}://{host}:{port}/webhdfs/v1":self.fs_args["data_proxy_target"]
+            }
+
         fs = WebHDFS(**self.fs_args)
         fs.session.verify = self._ssl_verify
         return fs
