@@ -42,24 +42,23 @@ class WebHDFSFileSystem(FileSystem):
         principal = config.pop("kerberos_principal", None)
         if principal:
             config["kerb_kwargs"] = {"principal": principal}
+
+        # If target data_proxy provided construct the source from host/port
+        data_proxy_target = config.pop("data_proxy_target", None)
+        if data_proxy_target:
+            host = config["host"]
+            port = config["port"]
+
+            protocol = "https" if config.get("use_https") else "http"
+
+            source_url = f"{protocol}://{host}:{port}/webhdfs/v1"
+            config["data_proxy"] = {source_url: data_proxy_target}
         return config
 
     @wrap_prop(threading.Lock())
     @cached_property
     def fs(self):
         from fsspec.implementations.webhdfs import WebHDFS
-
-        # If target data_proxy provided construct the source from host/port
-        if "data_proxy_target" in self.fs_args:
-            host = self.fs_args["host"]
-            port = self.fs_args["port"]
-
-            protocol = "https" if self.fs_args.get("use_https") else "http"
-
-            source_url = f"{protocol}://{host}:{port}/webhdfs/v1"
-            self.fs_args["data_proxy"] = {
-                source_url: self.fs_args["data_proxy_target"]
-            }
 
         fs = WebHDFS(**self.fs_args)
         fs.session.verify = self._ssl_verify
