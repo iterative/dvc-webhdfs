@@ -56,8 +56,9 @@ class WebHDFSFileSystem(FileSystem):
 
             protocol = "https" if self.fs_args.get("use_https") else "http"
 
+            source_url = f"{protocol}://{host}:{port}/webhdfs/v1"
             self.fs_args["data_proxy"] = {
-                f"{protocol}://{host}:{port}/webhdfs/v1":self.fs_args["data_proxy_target"]
+                source_url: self.fs_args["data_proxy_target"]
             }
 
         fs = WebHDFS(**self.fs_args)
