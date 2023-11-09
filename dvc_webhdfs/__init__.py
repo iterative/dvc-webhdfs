@@ -42,6 +42,17 @@ class WebHDFSFileSystem(FileSystem):
         principal = config.pop("kerberos_principal", None)
         if principal:
             config["kerb_kwargs"] = {"principal": principal}
+
+        # If target data_proxy provided construct the source from host/port
+        data_proxy_target = config.pop("data_proxy_target", None)
+        if data_proxy_target:
+            host = config["host"]
+            port = config["port"]
+
+            protocol = "https" if config.get("use_https") else "http"
+
+            source_url = f"{protocol}://{host}:{port}/webhdfs/v1"
+            config["data_proxy"] = {source_url: data_proxy_target}
         return config
 
     @wrap_prop(threading.Lock())
