@@ -1,3 +1,3 @@
 dvc-webhdfs
 
-webhdfs plugin for dvc
+WebHDFS plugin for dvc
