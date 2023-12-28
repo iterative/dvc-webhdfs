@@ -44,6 +44,12 @@ class WebHDFS(Cloud, CloudURLInfo):  # pylint: disable=abstract-method
             with _hdfs.read(self.path) as reader:
                 return reader.read()
 
+    def unlink(self, missing_ok: bool = False) -> None:
+        raise NotImplementedError
+
+    def rmdir(self, recursive: bool = True) -> None:
+        raise NotImplementedError
+
     @property
     def config(self):
         return {"url": self.url}
