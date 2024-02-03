@@ -1,8 +1,9 @@
 import pytest
-from dvc.testing.api_tests import (  # noqa, pylint: disable=unused-import
+
+from dvc.testing.api_tests import (  # noqa: F401
     TestAPI,
 )
-from dvc.testing.remote_tests import (  # noqa, pylint: disable=unused-import
+from dvc.testing.remote_tests import (  # noqa: F401
     TestRemote,
 )
 from dvc.testing.workspace_tests import TestImport as _TestImport
@@ -10,12 +11,12 @@ from dvc.testing.workspace_tests import TestImport as _TestImport
 
 @pytest.fixture
 def remote(make_remote):
-    yield make_remote(name="upstream", typ="webhdfs")
+    return make_remote(name="upstream", typ="webhdfs")
 
 
 @pytest.fixture
 def workspace(make_workspace):
-    yield make_workspace(name="workspace", typ="webhdfs")
+    return make_workspace(name="workspace", typ="webhdfs")
 
 
 class TestImport(_TestImport):

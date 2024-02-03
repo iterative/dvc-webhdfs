@@ -9,9 +9,7 @@ class WebHDFS(Cloud, CloudURLInfo):  # pylint: disable=abstract-method
     def _webhdfs(self):
         from hdfs import InsecureClient
 
-        client = InsecureClient(
-            f"http://{self.host}:{self.port}", self.user, root="/"
-        )
+        client = InsecureClient(f"http://{self.host}:{self.port}", self.user, root="/")
         yield client
 
     def is_file(self):
