@@ -1,15 +1,16 @@
 import threading
-from typing import Any
+from typing import Any, ClassVar
+
+from funcy import wrap_prop
 
 # pylint:disable=abstract-method
 from dvc.utils.objects import cached_property
 from dvc_objects.fs.base import FileSystem
-from funcy import wrap_prop
 
 
 class WebHDFSFileSystem(FileSystem):
     protocol = "webhdfs"
-    REQUIRES = {"fsspec": "fsspec"}
+    REQUIRES: ClassVar[dict[str, str]] = {"fsspec": "fsspec"}
     PARAM_CHECKSUM = "checksum"
 
     def __init__(self, fs=None, **kwargs: Any):
@@ -32,10 +33,8 @@ class WebHDFSFileSystem(FileSystem):
     def _get_kwargs_from_urls(urlpath):
         from fsspec.implementations.webhdfs import WebHDFS
 
-        return (
-            WebHDFS._get_kwargs_from_urls(  # pylint:disable=protected-access
-                urlpath
-            )
+        return WebHDFS._get_kwargs_from_urls(  # pylint:disable=protected-access
+            urlpath
         )
 
     def _prepare_credentials(self, **config):

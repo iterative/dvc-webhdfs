@@ -1,8 +1,9 @@
-from dvc.testing.fixtures import *  # noqa, pylint: disable=wildcard-import,unused-import
-from dvc_hdfs.tests.fixtures import (  # noqa, pylint: disable=unused-import
+from dvc_hdfs.tests.fixtures import (  # noqa: F401
     docker_compose_file,
     hadoop,
     hdfs_server,
 )
 
-from .fixtures import *  # noqa, pylint: disable=wildcard-import,unused-import
+from dvc.testing.fixtures import *  # noqa: F403
+
+from .fixtures import *  # noqa: F403
