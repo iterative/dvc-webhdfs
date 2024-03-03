@@ -32,7 +32,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-kerberos = ["requests-kerberos==0.13.0"]
+kerberos = ["requests-kerberos>=0.13.0"]
 dev = [
     "dvc-webhdfs[tests]",
     "mypy==1.8.0",
