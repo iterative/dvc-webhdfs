@@ -35,7 +35,7 @@ dependencies = [
 kerberos = ["requests-kerberos>=0.13.0"]
 dev = [
     "dvc-webhdfs[tests]",
-    "mypy==1.12.1",
+    "mypy==1.13.0",
 ]
 tests = [
     "dvc[testing]",
